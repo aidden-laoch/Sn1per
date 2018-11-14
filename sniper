@@ -27,7 +27,9 @@ function help {
   echo -e "$OKRED /____/_/ /_/___/ .___/\___/_/     $RESET"
   echo -e "$OKRED               /_/                 $RESET"
   echo ""
-  echo -e "$OKORANGE + -- --=[https://xerosecurity.com$RESET"
+  echo -e "$OKORANGE ***** OSCP FRIENDLY VERSION ***** $RESET"
+  echo -e "$OKORANGE ***** NO AUTO EXLPOITATION! ***** $RESET"
+  echo -e "$OKORANGE + -- --=[https://xerosecurity.com $RESET"
   echo -e "$OKORANGE + -- --=[sniper v$VER by @xer0dayz$RESET"
   echo ""
   echo ' [*] NORMAL MODE'
@@ -121,7 +123,7 @@ function check_online {
 
 function check_update {
   if [ "$ENABLE_AUTO_UPDATES" == "1" ] && [ "$ONLINE" == "1" ]; then
-    LATEST_VER=$(curl --connect-timeout 3 -s https://api.github.com/repos/1N3/Sn1per/tags | grep -Po '"name":.*?[^\\]",'| head -1 | cut -c11-13)
+    LATEST_VER=$(curl --connect-timeout 3 -s https://api.github.com/repos/aidden-laoch/Sn1per/tags | grep -Po '"name":.*?[^\\]",'| head -1 | cut -c11-13)
     if [ "$LATEST_VER" != "$VER" ]; then
       echo -e "$OKBLUE[$RESET${OKRED}i${RESET}$OKBLUE] sniper v$LATEST_VER is available to download... To update, type$OKRED \"sniper -u\" $RESET"
     fi
@@ -134,13 +136,13 @@ function update {
   if [ "$ONLINE" = "0" ]; then
     echo "You will need to download the latest release manually at https://github.com/1N3/Sn1per/"
   else
-    LATEST_VER=$(curl --connect-timeout 3 -s https://api.github.com/repos/1N3/Sn1per/tags | grep -Po '"name":.*?[^\\]",'| head -1 | cut -c11-13)
+    LATEST_VER=$(curl --connect-timeout 3 -s https://api.github.com/repos/aidden-laoch/Sn1per/tags | grep -Po '"name":.*?[^\\]",'| head -1 | cut -c11-13)
     if [ "$LATEST_VER" != "$VER" ]; then
       echo -e "$OKBLUE[$RESET${OKRED}i${RESET}$OKBLUE] Sn1per $LATEST_VER is available to download...Do you want to update? (y or n)$RESET"
       read ans
       if [ "$ans" = "y" ]; then
         rm -Rf /tmp/Sn1per/ 2>/dev/null
-        git clone https://github.com/1N3/Sn1per /tmp/Sn1per/
+        git clone https://github.com/aidden-laoch/Sn1per /tmp/Sn1per/
         cd /tmp/Sn1per/
         chmod +rx install.sh
         bash install.sh
@@ -321,13 +323,13 @@ function loot {
 
   cd $LOOT_DIR
 
-  if [ "$METASPLOIT_IMPORT" == "1" ]; then
-    echo -e "$OKORANGE + -- --=[Starting Metasploit service...$RESET"
-    /etc/init.d/metasploit start 2> /dev/null > /dev/null
-    msfdb start
-    echo -e "$OKORANGE + -- --=[Importing NMap XML files into Metasploit...$RESET"
-    msfconsole -x "workspace -a $WORKSPACE; workspace $WORKSPACE; db_import $LOOT_DIR/nmap/nmap*.xml; hosts; services; exit;" | tee $LOOT_DIR/notes/msf-$WORKSPACE.txt
-  fi
+#  if [ "$METASPLOIT_IMPORT" == "1" ]; then
+#    echo -e "$OKORANGE + -- --=[Starting Metasploit service...$RESET"
+#    /etc/init.d/metasploit start 2> /dev/null > /dev/null
+#    msfdb start
+#    echo -e "$OKORANGE + -- --=[Importing NMap XML files into Metasploit...$RESET"
+#    msfconsole -x "workspace -a $WORKSPACE; workspace $WORKSPACE; db_import $LOOT_DIR/nmap/nmap*.xml; hosts; services; exit;" | tee $LOOT_DIR/notes/msf-$WORKSPACE.txt
+#  fi
   
   echo -e "$OKORANGE + -- --=[Current reports...$RESET"
   ls -lh $LOOT_DIR/output/*.txt 2> /dev/null > /dev/null

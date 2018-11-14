@@ -1,4 +1,5 @@
 ## CHANGELOG:
+* v6.1 - Started removal of auto exploitation features to make it OSCP Friendly
 * v6.0 - Improved scan options for discover mode scans
 * v6.0 - Fixed issue with pip3 dependency package missing
 * v6.0 - Removed iceweasel from install.sh to fix apt error

